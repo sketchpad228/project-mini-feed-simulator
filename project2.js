@@ -104,6 +104,3 @@ sortByNewest();
 sortByLikes();
 getFeed();
 getPostsByUser("Homer")
-// The problem is getFeed() is displaying the postFeed array which has been sorted, even though sortByNewest()
-// sorts a copy of that array called sortedFeed.
-// 
