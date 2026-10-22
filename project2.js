@@ -36,18 +36,35 @@ function getFeed() {
 }
 
 function sortByNewest() { //Sort into order of timestamp
-    const sortedFeed = postFeed.toSorted((a, b) => b.timestamp - a.timestamp)
+    let firstEntry;
+    let secondEntry;
+    let sortedFeed = postFeed.toSorted((a, b) => b.timestamp - a.timestamp)
+    // console.log(postFeed.map(i.timestamp > i.timestamp))
+    // const sortedFeed = postFeed.toSorted((firstEntry, secondEntry) => secondEntry.timestamp - firstEntry.timestamp)
 
     // in some cases, 2 messages remain displayed in original order because they have the same timestamp,
     // this is an example of sort stability
     // but might I want it to default to sorting these two posts by ID if this happens?
     // if(a.timestamp == b.timestamp) {
-        // sortedFeed.sort((a, b) => b.id - a.id)
+    //     firstEntry = a.timestamp
+    //     secondEntry = b.timestamp
+    //     sortedFeed.toSorted((firstEntry, secondEntry) => secondEntry.id - firstEntry.id)
     // }
+
+    // Not working
+    for (let i = 0; i < postFeed.length; i++) {            
+        if(sortedFeed[i].timestamp == sortedFeed[i++].timestamp)
+        {
+                firstEntry = sortedFeed[i]
+                secondEntry = sortedFeed[i++]
+                sortedFeed.sort((firstEntry, secondEntry) => secondEntry - firstEntry)
+        }
+    }
 
     console.log("\n--- Posts in descending order of timestamp ---")
     console.log(sortedFeed);
-    
+    // console.log(newNum)
+    // console.log(num.map(i => i))
 }
 
 function sortByLikes() { //Sort into order of likes
@@ -59,17 +76,12 @@ function sortByLikes() { //Sort into order of likes
     console.log(sortedFeed);
 }
 
-function getPostsByUser(usernameSearch)
+function getPostsByUser(username)
 {
-    console.log(`\n--- Posts sent by ${usernameSearch} ---`);
+    console.log(`\n--- Posts sent by ${username} ---`);
     for (let i = 0; i < postFeed.length; i++) {            
-            if(postFeed[i].username == usernameSearch)console.log(postFeed[i]);
+        if(postFeed[i].username == username)console.log(postFeed[i]);
     }
-}
-
-function searchPostsByUser(username)
-{
-    
 }
 
 // --- Methods called ---
@@ -88,7 +100,7 @@ createPost("Lisa", "Splendid!");
 createPost("Maggie", "(suck)(suck)(suck)");
 
 createPost("Bart", "Do the Bartman!");
-
+createPost("Homér", "Le d'oh!")
 getFeed();
 likePost(0);
 likePost(1);
@@ -105,3 +117,4 @@ getFeed();
 getPostsByUser("Homer")
 getPostsByUser("Monty")
 getPostsByUser("Bart")
+getPostsByUser("Homér")
