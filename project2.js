@@ -37,14 +37,17 @@ function getFeed() {
 
 function sortByNewest() { //Sort into order of timestamp
     const sortedFeed = postFeed.toSorted((a, b) => b.timestamp - a.timestamp)
-    // if(a.timestamp === b.timestamp) {
-    //     sortedFeed.sort((a, b) => b.id - a.id)
-    // }
-    console.log("\n--- Posts in descending order of timestamp ---")
-    console.log(sortedFeed);
+
     // in some cases, 2 messages remain displayed in original order because they have the same timestamp,
     // this is an example of sort stability
     // but might I want it to default to sorting these two posts by ID if this happens?
+    // if(a.timestamp == b.timestamp) {
+        // sortedFeed.sort((a, b) => b.id - a.id)
+    // }
+
+    console.log("\n--- Posts in descending order of timestamp ---")
+    console.log(sortedFeed);
+    
 }
 
 function sortByLikes() { //Sort into order of likes
@@ -56,13 +59,12 @@ function sortByLikes() { //Sort into order of likes
     console.log(sortedFeed);
 }
 
-function getPostsByUser(username)
+function getPostsByUser(usernameSearch)
 {
-    // Can be shortened
-    // let jsFiles = postFeed.filter((file) => file.endsWith(username))
-    // username.forEach((i) => {
-    // console.log(jsFiles)
-    // })
+    console.log(`\n--- Posts sent by ${usernameSearch} ---`);
+    for (let i = 0; i < postFeed.length; i++) {            
+            if(postFeed[i].username == usernameSearch)console.log(postFeed[i]);
+    }
 }
 
 function searchPostsByUser(username)
@@ -70,7 +72,7 @@ function searchPostsByUser(username)
     
 }
 
-// --- Methods initiated ---
+// --- Methods called ---
 
 createPost("Homer", "D'oh!");
 likePost(0);
@@ -78,15 +80,15 @@ likePost(0);
 createPost("Monty", "Excellent!");
 likePost(0);
 likePost(1);
-// console.log(postFeed[post.id])
-createPost("Bart", "Ay Carumba!");
-// console.log(postFeed[post.id])
-createPost("Lisa", "Splendid!");
-// console.log(postFeed[post.id])
-createPost("Maggie", "(suck)(suck)(suck)");
-// console.log(postFeed[post.id])
 
-// console.log(postFeed[2]);
+createPost("Bart", "Ay Carumba!");
+
+createPost("Lisa", "Splendid!");
+
+createPost("Maggie", "(suck)(suck)(suck)");
+
+createPost("Bart", "Do the Bartman!");
+
 getFeed();
 likePost(0);
 likePost(1);
@@ -101,3 +103,5 @@ sortByNewest();
 sortByLikes();
 getFeed();
 getPostsByUser("Homer")
+getPostsByUser("Monty")
+getPostsByUser("Bart")
