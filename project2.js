@@ -25,7 +25,7 @@ function createPost(username, content)
 
 function likePost(postId) {
     postFeed[postId].likes++;
-    console.log(`Post number ${postId} received a like.`)
+    console.log(`You liked ${postFeed[postId].username}'s post.`)
 }
 
 function getFeed() {
@@ -41,9 +41,6 @@ function sortByNewest() { //Sort into order of timestamp
     //     sortedFeed.sort((a, b) => b.id - a.id)
     // }
     console.log("\n--- Posts in descending order of timestamp ---")
-    // for (let i = 0; i < postFeed.length; i++) {
-    //    console.log(postFeed[i]);
-    // }
     console.log(sortedFeed);
     // in some cases, 2 messages remain displayed in original order because they have the same timestamp,
     // this is an example of sort stability
@@ -62,9 +59,9 @@ function sortByLikes() { //Sort into order of likes
 function getPostsByUser(username)
 {
     // Can be shortened
-    let jsFiles = postFeed.filter((file) => file.endsWith(username))
+    // let jsFiles = postFeed.filter((file) => file.endsWith(username))
     // username.forEach((i) => {
-    console.log(jsFiles)
+    // console.log(jsFiles)
     // })
 }
 
