@@ -41,20 +41,14 @@ function getFeed() {
 }
 
 function sortByNewest() { //Sort into order of timestamp
-    let sortedFeed = postFeed.toSorted((a, b) => (b.timestamp - a.timestamp) || (b.id - a.id))
-    
     // in some cases, 2 messages remain displayed in original order because they have the same timestamp,
     // this is an example of sort stability
     // but might I want it to default to sorting these two posts by ID if this happens?
+    let sortedFeed = postFeed.toSorted((a, b) => (b.timestamp - a.timestamp) || (b.id - a.id))
+    //I've added the OR operator (||) so it defaults to sorting by ID when this happens.
+    //I've done the same for the sortByLikes method too.
     
-    //Pseudocode
-
-    // if(sortedFeed[i].timestamp == sortedFeed[i++].timestamp)
-    // {
-        //In the sortedFeed array, swap the two objects over so that the order defaults to ascending ID when the timestamps are the same
-    // }
-    
-
+ 
     console.log("\n--- Posts in descending order of timestamp ---")
     console.log(sortedFeed);
 }
